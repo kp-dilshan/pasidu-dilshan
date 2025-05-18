@@ -15,7 +15,7 @@ const Portfolio = () => {
   const technicalSkills = [
     { name: "web development", progress: 90, icon: <Code size={20} /> },
     { name: "App development", progress: 85, icon: <Code size={20} /> },
-    { name: "ui ux design", progress: 85, icon: <Code size={20} /> },
+    { name: "Ui Ux design", progress: 85, icon: <Code size={20} /> },
     { name: "Photoshop", progress: 80, icon: <Code size={20} /> },
     { name: "Revit architecture", progress: 70, icon: <Code size={20} /> },
     { name: "Autocad architecture", progress: 75, icon: <Code size={20} /> }
@@ -59,19 +59,19 @@ const Portfolio = () => {
         ]
       },
       {
-        id: 3,
-        period: "2024-Present",
+        id: 4,
+        period: "2025-Present",
         title: "Autocad and Revit Coure ",
         institution: "Dream Cad Academy",
         icon: <Calendar />,
         details: [
-          "45-day intensive English spoken and grammar course",
-          "Focus on business communication",
+          "6 month dream cad academy full  architecture course",
+          "Focus on autocad ,revit software and civil architecture theory / practical",
           "Currently in progress"
         ]
       },
       {
-        id: 4,
+        id: 3,
         period: "2023-2024",
         title: "Advanced Diploma in Web Development",
         institution: "IJSE (Institute of Java Software Engineering)",
@@ -223,6 +223,7 @@ const Portfolio = () => {
               animate={{ opacity: 1 }}
               className="flex items-center"
             >
+              
               <span className="text-xl font-bold text-blue-400">Pasidu Dilshan</span>
             </motion.div>
             
@@ -295,7 +296,7 @@ const Portfolio = () => {
                 className="inline-block"
               >
                 <span className="px-4 py-2 rounded-full bg-blue-500 bg-opacity-20 text-blue-300 text-sm font-medium">
-                  Web Developer
+                  Developer & Architecture
                 </span>
               </motion.div>
 
@@ -317,7 +318,7 @@ const Portfolio = () => {
                 transition={{ delay: 0.4 }}
                 className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0"
               >
-                Crafting digital experiences through creative web development. Specialized in building modern, responsive, and user-friendly applications.
+                Crafting digital experiences through creative web/app development. Specialized in building modern, responsive, and user-friendly applications.
               </motion.p>
             </div>
 
