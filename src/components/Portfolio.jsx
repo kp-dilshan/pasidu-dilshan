@@ -13,12 +13,12 @@ const Portfolio = () => {
   });
 
   const technicalSkills = [
-    { name: "HTML5", progress: 90, icon: <Code size={20} /> },
-    { name: "CSS3", progress: 85, icon: <Code size={20} /> },
-    { name: "JavaScript", progress: 85, icon: <Code size={20} /> },
-    { name: "React", progress: 80, icon: <Code size={20} /> },
-    { name: "Python", progress: 70, icon: <Code size={20} /> },
-    { name: "Node.js", progress: 75, icon: <Code size={20} /> }
+    { name: "web development", progress: 90, icon: <Code size={20} /> },
+    { name: "App development", progress: 85, icon: <Code size={20} /> },
+    { name: "ui ux design", progress: 85, icon: <Code size={20} /> },
+    { name: "Photoshop", progress: 80, icon: <Code size={20} /> },
+    { name: "Revit architecture", progress: 70, icon: <Code size={20} /> },
+    { name: "Autocad architecture", progress: 75, icon: <Code size={20} /> }
   ];
 
   const professionalSkills = [
@@ -61,8 +61,8 @@ const Portfolio = () => {
       {
         id: 3,
         period: "2024-Present",
-        title: "Advanced Diploma in English",
-        institution: "Language Institute",
+        title: "Autocad and Revit Coure ",
+        institution: "Dream Cad Academy",
         icon: <Calendar />,
         details: [
           "45-day intensive English spoken and grammar course",
