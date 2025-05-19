@@ -214,33 +214,6 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-Navigation Bar Updates:
-Made the navbar taller with more padding (h-20) for a modern look
-Added a backdrop blur effect for a sleek glass-morphism style
-Changed the logo text to a gradient
-Added smooth hover and tap animations to all navigation links
-Improved mobile menu with smoother animations and better spacing
-Added rounded-full style to navigation items for a modern touch
-Hero Section Improvements:
-Enhanced the background with larger, more subtle gradient blobs
-Added a decorative grid pattern for a tech/developer aesthetic
-Improved the profile image presentation with an animated ring
-Added subtle floating elements around the profile image
-Enhanced the "Pasidu Dilshan" name with an animated underline
-Redesigned CTA buttons with better hover effects and shadows
-Added social media links with hover animations
-Improved the scroll indicator animation
-Enhanced responsiveness for all screen sizes
-Added more subtle animations throughout the section
-These changes create a more immersive, visually appealing hero section that maintains the original content while making it feel more modern and impressive. The combination of glass-morphism, subtle gradients, and fluid animations gives it that "wow factor" you were looking for.
-
-To implement these changes, simply replace your existing navigation and hero sections with the code I've provided. Do you want me to make any specific adjustments to these updates?
-
-
-
-
-
-
 
 {/* Updated Navigation */}
 <nav className="bg-gray-900/80 backdrop-blur-md shadow-lg fixed w-full z-10 border-b border-gray-800/80">
