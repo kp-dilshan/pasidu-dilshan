@@ -129,7 +129,7 @@ const HeroSection = () => {
         <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117]"></div>
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+                <div className="absolute inset-0 bg-[(bg.png)] opacity-5"></div>
                 <motion.div
                     className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"
                     animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
@@ -402,3 +402,4 @@ const SocialIcon = ({ href, icon }) => (
 );
 
 export default Portfolio;
+
