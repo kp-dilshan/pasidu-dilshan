@@ -129,7 +129,7 @@ const HeroSection = () => {
         <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117]"></div>
-                <div className="absolute inset-0 bg-[(bg.png)] opacity-5"></div>
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
                 <motion.div
                     className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"
                     animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
@@ -147,7 +147,7 @@ const HeroSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <img src="https://i.ibb.co/L5w2X1j/bg.png" alt="Profile" className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg"/>
+                    <img src="/bg.png" alt="Profile" className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-gray-700 shadow-lg"/>
                     <h1 className="text-4xl md:text-6xl font-bold mb-4">
                         <span className="text-gray-100">Hi, I'm </span>
                         <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">Pasidu Dilshan</span>
