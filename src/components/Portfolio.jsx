@@ -35,7 +35,7 @@ const Portfolio = () => {
         { title: "Portfolio Website", description: "Modern and interactive portfolio website with smooth animations, responsive design, and dynamic content loading.", tech: ["React", "Framer Motion", "Tailwind CSS"], image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2670&auto=format&fit=crop", icon: <Briefcase size={24} />, liveLink: "https://www.behance.net/gallery/214734187/Portfolio-Full-Website", githubLink: "https://github.com/kp-dilshan", color: "from-purple-500 to-indigo-500" },
         { title: "Travel Guide Website", description: "Interactive travel guide platform featuring destination discovery, trip planning, and user reviews.", tech: ["React", "Node.js", "MapBox"], image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2670&auto=format&fit=crop", icon: <Plane size={24} />, liveLink: "https://www.behance.net/gallery/214734343/Travel-Guide-Full-Website", githubLink: "https://github.com/kp-dilshan", color: "from-green-500 to-emerald-500" },
         { title: "Learning Management System", description: "Comprehensive learning platform with course management, student progress tracking, and interactive content delivery.", tech: ["React", "Node.js", "PostgreSQL"], image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2670&auto=format&fit=crop", icon: <BookOpen size={24} />, liveLink: "https://www.behance.net/gallery/214734751/DK-Learning-Website", githubLink: "https://github.com/kp-dilshan", color: "from-yellow-500 to-amber-500" },
-        { title: "Academy Website", description: "Educational institution website with course catalog, student portal, and administrative dashboard.", tech: ["React", "Firebase", "Material-UI"], image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2670&auto=format&fit=crop", icon: <GraduationCap size={24} />, liveLink: "https://www.behance.net/gallery/214734859/Academy-Website", githubLink: "https://github.com/kp-dilshan", color: "from-red-500 to-orange-500" },
+        { title: "Academy Website", description: "Educational institution website with course catalog, student portal, and administrative dashboard.", tech: ["React", "Firebase", "Material-UI"], image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2670&auto=format&fit=crop", icon: <GraduationCap size={24} />, liveLink: "https://www.behance.net/gallery/214734859/Academy-Website", githubLink: "https://github.com/kp-dilshan", color: "from-red-500 to-orange-500" },
         { title: "Salon Management System", description: "Comprehensive salon management platform with appointment booking, staff scheduling, and inventory management.", tech: ["React", "Node.js", "MySQL"], image: "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=2670&auto=format&fit=crop", icon: <Scissors size={24} />, liveLink: "https://www.behance.net/gallery/214735021/Salon-Website", githubLink: "https://github.com/kp-dilshan", color: "from-pink-500 to-rose-500" }
     ];
 
@@ -117,7 +117,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen }) => (
 const HeroSection = () => {
     const roles = ["Web Developer", "App Developer", "UI/UX Designer", "Architecture Enthusiast"];
     const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+    const canvasRef = React.useRef(null);
 
+    // Typing animation effect
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
@@ -125,23 +127,137 @@ const HeroSection = () => {
         return () => clearInterval(interval);
     }, [roles.length]);
 
+    // WOW feeling animated background effect
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+
+        const setCanvasSize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        setCanvasSize();
+
+        const mouse = { x: null, y: null };
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor(x, y, size, color, speedX, speedY) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.color = color;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.baseSize = size;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // Pulsating effect
+                this.size = this.baseSize + Math.sin(Date.now() * 0.001 + this.x) * 0.5;
+
+                this.draw();
+            }
+        }
+        
+        let particlesArray = [];
+        const init = () => {
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 10000;
+            for(let i = 0; i < numberOfParticles; i++) {
+                let size = Math.random() * 2 + 1;
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                let speedX = Math.random() * 0.4 - 0.2;
+                let speedY = Math.random() * 0.4 - 0.2;
+                let color = `hsl(${Math.random() * 50 + 190}, 100%, 50%)`;
+                particlesArray.push(new Particle(x, y, size, color, speedX, speedY));
+            }
+        };
+
+        const connect = () => {
+            for (let i = 0; i < particlesArray.length; i++) {
+                // Connect particles to mouse
+                if (mouse.x && mouse.y) {
+                    let distanceToMouse = Math.sqrt(Math.pow(particlesArray[i].x - mouse.x, 2) + Math.pow(particlesArray[i].y - mouse.y, 2));
+                    if (distanceToMouse < 250) {
+                        ctx.strokeStyle = `rgba(173, 216, 230, ${1 - distanceToMouse/250})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+                // Connect particles to each other
+                for (let j = i + 1; j < particlesArray.length; j++) {
+                    let distance = Math.sqrt(Math.pow(particlesArray[i].x - particlesArray[j].x, 2) + Math.pow(particlesArray[i].y - particlesArray[j].y, 2));
+                    if (distance < 120) {
+                        ctx.strokeStyle = `rgba(173, 216, 230, ${0.8 - distance/120})`;
+                        ctx.lineWidth = 0.2;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        };
+
+        const animate = () => {
+            animationFrameId = requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const particle of particlesArray) {
+                particle.update();
+            }
+            connect();
+        };
+
+        init();
+        animate();
+
+        const handleResize = () => {
+            cancelAnimationFrame(animationFrameId);
+            setCanvasSize();
+            init();
+            animate();
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('mousemove', ()=>{});
+            window.removeEventListener('mouseout', ()=>{});
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
     return (
         <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-            <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117]"></div>
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-                <motion.div
-                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"
-                    animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
-                    transition={{ duration: 20, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-                />
-                <motion.div
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl"
-                    animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
-                    transition={{ duration: 20, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-                />
-            </div>
-            <div className="max-w-4xl mx-auto px-4 text-center z-10">
+            <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0"></canvas>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117] opacity-80 z-[1]"></div>
+            
+            <div className="max-w-4xl mx-auto px-4 text-center z-10 relative">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -184,7 +300,7 @@ const SkillsSection = ({ technicalSkills, professionalSkills }) => (
     <section id="skills" className="py-24 bg-[#161b22]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text inline-block">My Arsenal of Skills</h2>
+                <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text inline-block">My Personal Skills</h2>
                 <p className="text-gray-400 mt-4 text-lg">The tools and talents I use to bring ideas to life.</p>
             </motion.div>
             <div className="grid md:grid-cols-2 gap-12">
@@ -402,4 +518,6 @@ const SocialIcon = ({ href, icon }) => (
 );
 
 export default Portfolio;
+
+
 
